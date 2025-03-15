@@ -1,5 +1,8 @@
 import sys
-import logging
+import os
+# import logging
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from src.logger import logging
 
 def error_message_detail(error, error_detail: sys):
     _, _, exc_tb = sys.exc_info()
@@ -22,5 +25,6 @@ class CustomException(Exception):
 if __name__ == "__main__":
     try:
         a = 1/0
-    except ZeroDivisionError as e:
-        raise CustomException("Division by zero is not allowed", error_detail=e) 
+    except Exception as e:
+        logging.info("Divide by zero")
+        raise CustomException(e, sys) 
