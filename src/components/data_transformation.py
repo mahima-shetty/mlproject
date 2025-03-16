@@ -43,7 +43,8 @@ class DataTransformation:
             
             logging.info(f"Numerical columns : {numerical_columns}")
             logging.info(f"Categorical columns : {categorical_columns}")
-                        
+                  
+            
             
             
             
@@ -92,7 +93,7 @@ class DataTransformation:
             input_processor_test_arr = preprocessing_obj.transform(input_feature_test_df)
             
             train_arr = np.c_[input_processor_train_arr, np.array(target_feature_train_df )]
-            test_arr = np.c_[input_processor_test_arr, np.array(input_feature_test_df)]
+            test_arr = np.c_[input_processor_test_arr, np.array(target_feature_test_df)]
             
             logging.info(f"Saved preprocessing object")
             
@@ -105,7 +106,7 @@ class DataTransformation:
             return (
                 train_arr,
                 test_arr,
-                
+                preprocessing_obj
             )
             
         except Exception as e:
